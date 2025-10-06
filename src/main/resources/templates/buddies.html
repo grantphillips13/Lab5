@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Address Book #' + ${book.id}">Address Book</title>
+    <style>
+        body { font-family: ui-sans-serif, system-ui, Arial; margin: 2rem; }
+        table { border-collapse: collapse; width: 600px; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { text-align: left; background: #f6f6f6; }
+        caption { text-align: left; margin-bottom: .5rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<h1 th:text="'Address Book #' + ${book.id}">Address Book</h1>
+
+<table>
+    <caption>Buddies</caption>
+    <thead>
+    <tr><th>Name</th><th>Phone</th><th>Address</th></tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(buddies)}">
+        <td colspan="3"><em>No buddies yet for this address book.</em></td>
+    </tr>
+    <tr th:each="b : ${buddies}">
+        <td th:text="${b.name}">Name</td>
+        <td th:text="${b.phoneNumber}">Phone</td>
+        <td th:text="${b.address}">Address</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
