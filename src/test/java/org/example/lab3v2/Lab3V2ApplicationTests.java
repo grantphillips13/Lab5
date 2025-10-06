@@ -28,12 +28,18 @@ class Lab3V2ApplicationTests {
     @Test
     void fullFlow_createBook_addBuddy_thenViewPageShowsBuddy() {
         // 1) Create an address book
+        System.out.println("Starting fullFlow test...");
         ResponseEntity<String> createResp =
                 rest.postForEntity(url("/api/addressbooks"), null, String.class);
+
+        System.out.println("Created address book: " + createResp);
 
         assertThat(createResp.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         URI location = createResp.getHeaders().getLocation();
         assertThat(location).isNotNull();
+
+        System.out.println("New address book URI: " + location);
+
 
         Long bookId = extractIdFromLocation(location);
         assertThat(bookId).isNotNull();
@@ -53,6 +59,8 @@ class Lab3V2ApplicationTests {
                 String.class
         );
 
+        System.out.println("Added buddy response: " + addResp.getBody());
+
         assertThat(addResp.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         // 3) Load the Thymeleaf page and check it contains the buddy
@@ -61,6 +69,8 @@ class Lab3V2ApplicationTests {
 
         assertThat(page.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(page.getBody()).contains("Alice"); // minimal proof page renders buddy
+
+        System.out.println("Rendered page content:\n" + page.getBody());
     }
 
     private Long extractIdFromLocation(URI loc) {
