@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Add Buddy</title></head>
+<body>
+<h1>Add Buddy to Book #[[${bookId}]]</h1>
+
+<form th:action="@{|/ui/addressbooks/${bookId}/buddies|}" method="post">
+    <label>Name: <input type="text" name="name" th:value="${form.name()}"/></label><br/>
+    <label>Phone: <input type="text" name="phoneNumber" th:value="${form.phoneNumber()}"/></label><br/>
+    <label>Address: <input type="text" name="address" th:value="${form.address()}"/></label><br/>
+    <button type="submit">Add</button>
+</form>
+
+<p><a th:href="@{|/ui/addressbooks/${bookId}|}">Back to book</a></p>
+</body>
+</html>
