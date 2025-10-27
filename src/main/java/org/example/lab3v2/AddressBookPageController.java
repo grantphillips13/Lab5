@@ -15,19 +15,16 @@ public class AddressBookPageController {
         this.addressBooks = addressBooks;
     }
 
-    // Landing page with simple links
     @GetMapping("")
     public String listLanding() {
         return "index";
     }
 
-    // Show a simple page with a "Create" button
     @GetMapping("/new")
     public String newBookForm() {
         return "new-book";
     }
 
-    // Create an address book, then redirect to its view page
     @PostMapping("/new")
     public String createBook() {
         AddressBook ab = new AddressBook();
@@ -35,8 +32,6 @@ public class AddressBookPageController {
         return "redirect:/ui/addressbooks/" + ab.getId();
     }
 
-    // Show an address book and its buddies
-    // @Transactional so the lazy list can be rendered by Thymeleaf safely
     @GetMapping("/{id}")
     @Transactional(readOnly = true)
     public String viewBook(@PathVariable Long id, Model model) {
@@ -47,7 +42,6 @@ public class AddressBookPageController {
         return "view-book";
     }
 
-    // Show the "add buddy" form
     @GetMapping("/{id}/buddies/new")
     public String newBuddyForm(@PathVariable Long id, Model model) {
         model.addAttribute("bookId", id);
@@ -55,14 +49,13 @@ public class AddressBookPageController {
         return "add-buddy";
     }
 
-    // Handle "add buddy" form submit
     @PostMapping("/{id}/buddies")
     public String addBuddy(@PathVariable Long id, BuddyForm form) {
         AddressBook ab = addressBooks.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No book " + id));
         BuddyInfo bi = new BuddyInfo(form.address(), form.name(), form.phoneNumber());
         ab.addBuddy(bi);
-        addressBooks.save(ab); // cascades buddy save
+        addressBooks.save(ab);
         return "redirect:/ui/addressbooks/" + id;
     }
 }

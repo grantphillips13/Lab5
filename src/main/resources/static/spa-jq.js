@@ -1,4 +1,3 @@
-// Minimal jQuery SPA that mirrors the Spring tutorial, adapted to your endpoints.
 $(function () {
     const api = '/api/addressbooks';
 
@@ -24,7 +23,7 @@ $(function () {
         }
     }
 
-    // Create address book (POST /api/addressbooks)
+    // Create address book
     $createForm.on('submit', function (e) {
         e.preventDefault();
         $.ajax({
@@ -44,7 +43,7 @@ $(function () {
         });
     });
 
-    // Add buddy (POST /api/addressbooks/{id}/buddies)
+    // Add buddy
     $addBuddyForm.on('submit', function (e) {
         e.preventDefault();
         const id = $bookIdInput.val();
@@ -69,7 +68,7 @@ $(function () {
         });
     });
 
-    // List buddies (GET /api/addressbooks/{id}/buddies)
+    // List buddies
     $listBtn.on('click', function () {
         const id = $bookIdInput.val();
         if (!id) return line('Please create or enter an AddressBook ID first.', 'error');

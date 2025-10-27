@@ -4,12 +4,10 @@
     <meta charset="UTF-8" />
     <title>AddressBook SPA</title>
 
-    <!-- jQuery per the tutorial -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
 
-    <!-- Your SPA behavior -->
     <script defer src="spa-jq.js"></script>
 
     <style>
@@ -26,9 +24,8 @@
 </head>
 <body>
 <h1>AddressBook SPA</h1>
-<p class="muted">Create an address book, add buddies, then list them — all via AJAX.</p>
+<p class="muted">Create an address book, add buddies, then list them </p>
 
-<!-- Create AddressBook -->
 <form id="createBookForm">
     <fieldset>
         <legend>Create Address Book</legend>
@@ -41,7 +38,6 @@
     </fieldset>
 </form>
 
-<!-- Add Buddy -->
 <form id="addBuddyForm">
     <fieldset>
         <legend>Add Buddy to AddressBook</legend>
@@ -61,7 +57,6 @@
     </fieldset>
 </form>
 
-<!-- List Buddies -->
 <fieldset>
     <legend>List Buddies</legend>
     <button id="listBuddiesBtn" type="button">Load Buddies for Current ID</button>
@@ -71,10 +66,5 @@
 <div id="output" class="muted">No actions yet.</div>
 
 <hr />
-<p class="muted">
-    Endpoints used: <code>POST /api/addressbooks</code>,
-    <code>POST /api/addressbooks/{id}/buddies</code>,
-    <code>GET /api/addressbooks/{id}/buddies</code>
-</p>
 </body>
 </html>
