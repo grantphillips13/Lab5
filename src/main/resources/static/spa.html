@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>AddressBook SPA</title>
+
+    <!-- jQuery per the tutorial -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+
+    <!-- Your SPA behavior -->
+    <script defer src="spa-jq.js"></script>
+
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; max-width: 800px; margin: 2rem auto; }
+        h1 { margin-bottom: .25rem; }
+        fieldset { margin: 1rem 0; padding: 1rem; }
+        label { display: block; margin: .4rem 0 .2rem; }
+        input, button { padding: .5rem; }
+        #output > div { white-space: pre-wrap; border-left: 3px solid #ddd; padding: .5rem .75rem; margin: .5rem 0; }
+        .error { color: #b00020; }
+        .ok    { color: #0a7c2f; }
+        .muted { color: #666; }
+    </style>
+</head>
+<body>
+<h1>AddressBook SPA</h1>
+<p class="muted">Create an address book, add buddies, then list them — all via AJAX.</p>
+
+<!-- Create AddressBook -->
+<form id="createBookForm">
+    <fieldset>
+        <legend>Create Address Book</legend>
+        <button type="submit">Create</button>
+        <span class="muted">New ID will be filled below.</span>
+        <div>
+            <label for="bookId">Current AddressBook ID</label>
+            <input id="bookId" name="bookId" type="number" min="1" step="1" placeholder="(auto-filled)" />
+        </div>
+    </fieldset>
+</form>
+
+<!-- Add Buddy -->
+<form id="addBuddyForm">
+    <fieldset>
+        <legend>Add Buddy to AddressBook</legend>
+
+        <label for="name">Name</label>
+        <input id="name" name="name" required placeholder="Alice" />
+
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" required placeholder="555-1234" />
+
+        <label for="address">Address</label>
+        <input id="address" name="address" required placeholder="123 Maple" />
+
+        <div style="margin-top:.6rem">
+            <button type="submit">Add Buddy</button>
+        </div>
+    </fieldset>
+</form>
+
+<!-- List Buddies -->
+<fieldset>
+    <legend>List Buddies</legend>
+    <button id="listBuddiesBtn" type="button">Load Buddies for Current ID</button>
+</fieldset>
+
+<h2>Output</h2>
+<div id="output" class="muted">No actions yet.</div>
+
+<hr />
+<p class="muted">
+    Endpoints used: <code>POST /api/addressbooks</code>,
+    <code>POST /api/addressbooks/{id}/buddies</code>,
+    <code>GET /api/addressbooks/{id}/buddies</code>
+</p>
+</body>
+</html>
