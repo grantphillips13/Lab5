@@ -42,7 +42,7 @@ public class AddressBookRestController {
             BuddyInfo bi = new BuddyInfo(dto.address(), dto.name(), dto.phoneNumber());
             ab.addBuddy(bi);
             addressBooks.save(ab);
-            buddies.save(bi);
+            //buddies.save(bi);
             return ResponseEntity
                     .created(URI.create("/api/addressbooks/" + id + "/buddies/" + bi.getId()))
                     .body(bi);
